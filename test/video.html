@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    window.onload=function(){
+      let oVideo=document.getElementById('video')
+      let oStop=document.getElementById('stop')
+      // pause()
+      // play()
+      // muted //静音bool
+      // volume //音量0-100
+      // currentTime//当前播放位置（s）
+      // duration//长度（s）
+      oStop.onclick=function(){
+        oVideo.currentTime=0
+        oVideo.pause()
+      }
+      console.log(oVideo.duration)
+      oVideo.addEventListener('timeupdate',function(){
+        console.log(oVideo.currentTime)
+      },false)
+      //播放速度调整1.服务调整，存成多个文件2.点播调整码率
+      //适配屏幕不变形
+      // if(w/h>W/H){ //偏宽
+      //   h/H=w/W
+      //   w=W
+      // }else{ //偏高
+      //   h/H=w/W
+      //   h=H
+      // }
+    }
+  </script>
+</head>
+<body>
+<video id="video" src="video4.mp4" autoplay loop poster="kaikeba.jpg" controls>
+  你的浏览器不支持video
+</video>
+<input type="button" id="stop" value="停止">
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function show(data){
+      var oUl=document.getElementById('list');
+      console.log(oUl)
+      oUl.innerHTML=''
+        data.s.forEach(item=>{
+          let oLi=document.createElement('li')
+          oLi.innerHTML=item;
+          oUl.appendChild(oLi)
+        })
+    }
+  </script>
+
+  <script>
+    window.onload=function(){
+      var oInp=document.getElementById('inp');
+
+      oInp.oninput=function(){
+        let sc=document.createElement('script')
+        sc.src=`https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${oInp.value}&cb=show`;
+        document.head.appendChild(sc)
+      }
+    }
+  </script>
+</head>
+<body>
+  <input type="text" id='inp'>
+  <ul id='list'></ul>
+</body>
+</html>

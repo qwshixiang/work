@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    let formdata=new FormData();
+    formdata.set('a',12)
+    formdata.set('b',2)
+
+    formdata.append('b',5)
+    console.log(formdata.get('b'))
+    let xml=new XMLHttpRequest();
+    xml.open('post','1.php',true)
+    xml.send(formdata)
+    xml.onreadystatechange=function(){
+    if(xml.readyState==4) {
+    if((xml.status>=200&&xml.status<300)||xml.status==304){
+      alert(xml.responseText)
+    }else{
+      alert('错了')
+    }
+    }
+    }
+  </script>
+</head>
+<body>
+  <input type="text">
+</body>
+</html>

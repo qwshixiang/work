@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/jquery-1.7.2.js"></script>
+  <script>
+    $(function(){
+      $('#inp').on('click',function(){
+        $.ajax({
+          url:`http://localhost:666/`,
+          data:{a:10,b:20},
+          dataType:'jsonp',
+          jsonp:'callback',
+          success(data){
+            alert(data)
+          },
+          error(){
+            alert('错了')
+          }
+        })
+      })
+    })
+  </script>
+
+
+</head>
+<body>
+  <input type="button" id='inp' value="请求">
+  <ul id='list'></ul>
+</body>
+</html>

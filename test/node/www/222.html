@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.7.2.js"></script>
+  <script>
+      $(function(){
+        $('#btn').click(function(){
+          $.ajax({
+            url:'/reg',
+            data:{user:$('#user').val(),password:$('#password').val()},
+            dataType:'json',
+            success(res){
+              if(res.code){
+                alert('注册失败'+res.msg)
+              }else{
+                alert(res.msg)
+              }
+            },
+            error(err){//通讯问题，网络问题
+              alert('注册失败，网络不通')
+            }
+          })
+        })
+      })
+  </script>
+</head>
+<body>
+用户：<input type="text" name="user" id="user">
+密码：<input type="text" name="password" id="password">
+<input type="button" value="注册" id="btn">
+</body>
+</html>

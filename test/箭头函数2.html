@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      let arr=[1,3,5,3,7,455,34]
+      arr.sort((a,b)=>b-a)
+alert(arr)
+
+//参数扩展
+//剩余参数
+function show(a,b,...arg){
+alert(arg)
+}
+show(12,3,4,56,67)
+//展开数组
+let arr2=[12,3,4]
+function sum(a,c,b){
+alert(a+b+c)
+}
+sum(...arr2)
+
+</script>
+  </head>
+  <body>
+
+  </body>
+</html>

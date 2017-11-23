@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<script>
+    let arr=[2,4,68,45,787,5565,222]
+    let res=arr.reduce((tmp,item,index)=>tmp+item)//tmp中间值
+alert(digital_root(999))
+
+function digital_root(n) {
+
+
+  function num(n){
+      let sum=n.toString().split('').reduce(function(acc, d) { return acc + +d; }, 0));;
+      let arr=n.toString().split('');
+      sum=arr.reduce((tmp,item,index)=>tmp+ +item)
+
+      if(sum>=10){
+         return num(sum)
+      }else{
+        return sum
+      }
+  }
+ return num(n)
+}
+</script>
+</head>
+<body></body>
+</html>

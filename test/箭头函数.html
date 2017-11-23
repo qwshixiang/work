@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>箭头函数</title>
+    <script>
+      function show(fn){
+    fn(12,4)
+      }
+      show((a,b)=>{
+        alert(a*b)
+      })
+
+let show1=a=>{
+alert(a)
+}
+show1(111)
+let sum=(a,b)=>{
+return a+b
+}
+alert(sum(12,5))
+let sum2=(a,b)=>a+b
+alert(sum2(16,5))
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    // localStorage  --5M 不会被发往服务器 永久存储
+    localStorage.a=2  //设置
+    localStorage.b=12
+    console.log(localStorage.a)
+    delete localStorage.a //删除
+    // for in   //遍历
+    let obj={
+      name:'aaa',
+      age:000
+    }
+    localStorage.hh=JSON.stringify(obj);
+    let obj2=JSON.parse(localStorage.hh)
+    console.log(obj2)
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <scripts src="js/jquery-1.4.1.min.js"></script>
+  <script>
+    let xml=new XMLHttpRequest();
+    xml.open('GET','data/1.txt',true)
+    xml.send()
+    xml.onreadystatechange=function(){
+    if(xml.readyState==4){
+if(xml.status==200){
+alert(xml.responseText)
+
+}
+}
+}
+  </script>
+</head>
+<body>
+
+</body>
+</html>

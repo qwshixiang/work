@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://localhost:555/socket.io/socket.io.js"></script>
+  <script src="jquery-1.7.2.js"></script>
+  <style>
+    .mine{background:green}
+  </style>
+  <script>
+      const sock=io.connect('ws://localhost:555/')
+      $(function(){
+        let Cusername=''
+        //注册
+        sock.on('reg_ret',(code,msg)=>{
+          if(code){
+            alert('注册失败,'+msg)
+          }else{
+              alert('注册成功')
+          }
+        })
+        $('#btn').click(function(){
+          sock.emit('reg',$('#user').val(),$('#password').val());
+        })
+        //登录
+        sock.on('login_ret',(code,msg)=>{
+          if(code){
+            alert('登录失败,'+msg)
+          }else{
+              alert('登录成功')
+              Cusername=$('#user').val()
+          }
+        })
+        $('#btn1').click(function(){
+          sock.emit('login',$('#user').val(),$('#password').val());
+        })
+        //消息
+        sock.on('msg_ret',(code,msg)=>{
+          if(code){
+            alert('发送失败,'+msg)
+          }else{
+              let html=""
+              html+=`<li class="mine"><h4>${Cusername}</h4><p>${$('#text').val()}</p></li>`
+              $('ul').append(html)
+              $('#text').val('')
+          }
+        })
+        sock.on('msg',(name,txt)=>{
+          let html=""
+          html+=`<li><h4>${name}</h4><p>${txt}</p></li>`
+          $('ul').append(html)
+        })
+        $('#send').click(function(){
+          sock.emit('msg',$('#text').val())
+        })
+      })
+  </script>
+</head>
+<body>
+用户：<input type="text" name="user" id="user">
+密码：<input type="text" name="password" id="password">
+<input type="button" value="注册" id="btn">
+<input type="button" value="登录" id="btn1">
+<textarea id="text" rows="8" cols="80"></textarea>
+<input type="button" value="发送" id="send">
+<ul>
+  <li>
+    <h4>zhangsan</h4>
+    <p></p>
+  </li>
+</ul>
+</body>
+</html>

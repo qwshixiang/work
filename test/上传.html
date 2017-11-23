@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+  window.onload=function(){
+    let oF1=document.getElementById('f1');
+    let oBtn=document.getElementById('btn');
+
+    oBtn.onclick=function(){
+      let formdata=new FormData();
+      formdata.set('file',oF1)
+      let xml=new XMLHttpRequest();
+      xml.upload.onload=function(){
+        console.log('上传完成')
+      }
+      xml.upload.onprogress=function(ev){
+        console.log(ev.loaded,ev.total)
+      }
+      xml.open('post','2.php',true)
+      xml.send(formdata)
+      xml.onreadystatechange=function(){
+        if(xml.readyState==4) {
+          if((xml.status>=200&&xml.status<300)||xml.status==304){
+            alert(xml.responseText)
+          }else{
+            alert('错了')
+          }
+        }
+      }
+    }
+    }
+  </script>
+</head>
+<body>
+  <input type="file" id='f1'>
+  <input type="button" id='btn' value="请求">
+</body>
+</html>
