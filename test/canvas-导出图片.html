@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{background:#fff;border: 1px solid #ccc;}
+  </style>
+  <script>
+    window.onload=function(){
+      let oC=document.getElementById('canvas')
+      let oGray=document.getElementById('gray')
+      let oYellow=document.getElementById('yellow')
+      let oGreen=document.getElementById('green')
+      let gd=oC.getContext('2d');
+        //每个像素占4位 r g b a (0~255)
+      let oImg=new Image();
+      oImg.src='1.jpg'
+      oImg.onload=function(){
+        gd.drawImage(oImg,0,0)
+        //获取像素区 canvas获取图像信息需要服务器
+        let imageData=gd.getImageData(0,0,oC.width,oC.height)
+        let data=imageData.data //data[(c*W+r)*4]
+        console.log(imageData)
+        console.log(`r:${data[(399*500+499)*4]}g:${data[(399*500+499)*4+1]}b:${data[(399*500+499)*4+2]}a:${data[(399*500+499)*4+3]}`)
+        oGray.onclick=function(){
+          for(let r=0;r<oC.height;r++){
+            for(let c=0;c<oC.width;c++){
+
+              let avg=(data[(r*oC.width+c)*4]+data[(r*oC.width+c)*4+1]+data[(r*oC.width+c)*4+2])/3;//变灰
+              data[(r*oC.width+c)*4]=data[(r*oC.width+c)*4+1]=data[(r*oC.width+c)*4+2]=avg
+              //putImageData() 方法将图像数据（从指定的 ImageData 对象）放回画布上
+            }
+          }
+           gd.putImageData(imageData,0,0)
+        }
+        oYellow.onclick=function(){
+          for(let r=0;r<oC.height;r++){
+            for(let c=0;c<oC.width;c++){
+              data[(r*oC.width+c)*4+2]=0
+            }
+          }
+           gd.putImageData(imageData,0,0)
+        }
+        oGreen.onclick=function(){
+          for(let r=0;r<oC.height;r++){
+            for(let c=0;c<oC.width;c++){
+              data[(r*oC.width+c)*4]=data[(r*oC.width+c)*4+2]=0
+            }
+          }
+           gd.putImageData(imageData,0,0)
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <input type="button" id="gray" value="变灰">
+  <input type="button" id="yellow" value="变黄">
+  <input type="button" id="green" value="变绿">
+  <input type="button" id="save" value="保存">
+  <canvas id="canvas" width='500' height='400'></canvas>
+</body>
+</html>
